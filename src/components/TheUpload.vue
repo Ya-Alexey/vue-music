@@ -144,7 +144,7 @@ export default {
               commentCount: 0,
             };
 
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log('File available at', downloadURL);
               song.url = downloadURL;
             });
