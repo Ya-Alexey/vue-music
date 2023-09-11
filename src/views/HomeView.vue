@@ -23,10 +23,13 @@
     <!-- Main Content -->
     <section class="container mx-auto">
       <div class="bg-white rounded border border-gray-200 relative flex flex-col">
-        <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
+        <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200" 
+          v-icon-secondary="{ icon: 'headphones-alt', right: true }"
+          >
+          <!-- v-icon.right.yellow="'headphones-alt'" -->
           <span class="card-title">Songs</span>
           <!-- Icon -->
-          <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
+          <!-- <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i> -->
         </div>
         <!-- Playlist -->
         <ol id="playlist">
@@ -51,11 +54,15 @@ import {
   orderBy,
 } from '@/includes/firebase.js';
 import SongItem from '@/components/SongItem.vue';
+import IconSecondary from '@/directives/icon-secondary';
 
 export default {
   name: 'HomeView',
   components: {
     SongItem
+  },
+  directives: {
+    'icon-secondary': IconSecondary,
   },
   data() {
     return {
@@ -90,7 +97,7 @@ export default {
         this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
       }
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
         this.songs.push({
           docId: doc.id,
           ...doc.data(),
@@ -104,7 +111,7 @@ export default {
       const bottomOfWindow = Math.round(scrollTop) + innerHeight >= offsetHeight;
 
       if (bottomOfWindow) {
-        console.log('bottomOfWindow');
+        // console.log('bottomOfWindow');
         this.getSongs();
       }
     },

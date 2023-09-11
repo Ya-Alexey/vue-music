@@ -17,7 +17,7 @@ import AppPlayer from '@/components/AppPlayer.vue';
 
 import { mapWritableState } from 'pinia';
 import useUserStore from '@/stores/user';
-import { auth, onAuthStateChanged } from '@/includes/firebase';
+import { auth } from '@/includes/firebase';
 
 export default {
   name: "App",
@@ -30,14 +30,10 @@ export default {
     ...mapWritableState(useUserStore, ['userLoggedIn']),
   },
   created() {
-    // if (auth.currentUser) {
-    //   this.userLoggedIn = true;
-    // }
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.userLoggedIn = true;
-      }
-    });
+    if (auth.currentUser) {
+      // console.log('app created');
+      this.userLoggedIn = true;
+    }
   }
 }
 </script>
