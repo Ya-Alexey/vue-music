@@ -1,0 +1,15 @@
+{
+  "homeView": {
+    "listen": "Listen to Great Music!"
+  },
+  "songView": {
+    "commentCount": "No comments | 1 comment | {count} comments"
+  },
+  "register": {
+    "accept": "I accept... {0}",
+    "tos": "Terms of Service"
+  },
+  "manageView": {
+    "my_songs": "My Songs"
+  }
+}
