@@ -198,21 +198,20 @@ export default {
       });
     }
   },
-  async created() {
-    const docRef = doc(db, "songs", this.$route.params.id);
+  async beforeRouteEnter (to, from, next) {
+    const docRef = doc(db, "songs", to.params.id);
     const docSnap = await getDoc(docRef);
 
-    if (!docSnap.exists()) {
-      this.$router.push({ name: 'home' });
-      return;
-    }
-
-    const { sort } = this.$route.query;
-
-    this.sort = sort === '1' || sort === '2' ? sort : '1';
-
-    this.song = docSnap.data();
-    this.getComments();
-  },
+    next((vm) => {
+      if (!docSnap.exists()) {
+        vm.$router.push({ name: 'home' });
+        return;
+      }
+      const { sort } = vm.$route.query;
+      vm.sort = sort === '1' || sort === '2' ? sort : '1';
+      vm.song = docSnap.data();
+      vm.getComments();
+    });
+  }
 }
 </script>
